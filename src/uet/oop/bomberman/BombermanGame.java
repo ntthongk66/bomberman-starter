@@ -22,12 +22,14 @@ public class BombermanGame extends Application {
     public static int _height = 0;
     public static int _level = 1;
     public static Bomber bomberman;
+    public static int[][] listKill;
     public static Balloon ballom;
-    
+    public static Bomb bomm;
     private GraphicsContext gc;
     private Canvas canvas;
     public List<Entity> entities = new ArrayList<>();
     public static List<Entity> stillObjects = new ArrayList<>();
+    public static List<Entity> enemy = new ArrayList<>();
     public static int[][] idObjects;
     public CreateMap crM = new CreateMap("Level1");
 
@@ -64,9 +66,9 @@ public class BombermanGame extends Application {
                     case RIGHT:
                         AnimatedEntity.move_right(bomberman);
                         break;
-//                    case SPACE:
-//                        Bomb.putBomb();
-//                        break;
+                    case SPACE:
+                        Bomb.putBomb();
+                        break;
                 }
         });
         // Them scene vao stage
@@ -86,17 +88,20 @@ public class BombermanGame extends Application {
 
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
         ballom = new Balloon(4,5,Sprite.balloom_left1.getFxImage());
+        //bomm = new Bomb(2,3,Sprite.bomb_2.getFxImage());
+
         entities.add(bomberman);
-        entities.add(ballom);
+        enemy.add(ballom);
     }
 
 
     public void update() {
         entities.forEach(Entity::update);
-        //AnimatedEntity.running(bomberman);
-       // entities.forEach(g -> AnimatedEntity.controlFrame(g));
+        enemy.forEach(Entity::update);
+
         AnimatedEntity.controlFrame(bomberman);
         AnimatedEntity.controlFrame(ballom);
+        stillObjects.forEach(Entity::update);
 
         //bomberman.controlFrame();
     }
@@ -105,5 +110,6 @@ public class BombermanGame extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
+        enemy.forEach(g->g.render(gc));
     }
 }

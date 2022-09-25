@@ -6,8 +6,16 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public abstract class AnimatedEntity extends Entity {
     protected  int swap;
+    protected int deadFrame = 0;
     protected  int fps = 0;
     protected int numStep = 4;
+    protected boolean life = true;
+    public boolean getLife(){
+        return this.life;
+    }
+    public void setLife(boolean life){
+        this.life = life;
+    }
 
     protected  String direction = "";
     public void setFps(int s){
