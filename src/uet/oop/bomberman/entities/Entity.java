@@ -26,5 +26,21 @@ public abstract class Entity {
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }
+    public int getX(){
+        return this.x;
+    }
+    public void setX(int _x){
+        this.x = _x;
+    }
+    public int getY(){
+        return this.y;
+    }
+    public  void setY(int _y){
+        this.y =_y;
+    }
+    public  void setImg(Image _img){
+        this.img = _img;
+    }
+
     public abstract void update();
 }

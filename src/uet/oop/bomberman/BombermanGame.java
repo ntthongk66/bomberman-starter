@@ -7,10 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.ArrayList;
@@ -18,13 +16,20 @@ import java.util.List;
 
 public class BombermanGame extends Application {
     
-    public static final int WIDTH = 20;
+    public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
+    public static int _width = 0;
+    public static int _height = 0;
+    public static int _level = 1;
+    public static Bomber bomberman;
+    public static Balloon ballom;
     
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
+    public List<Entity> entities = new ArrayList<>();
+    public static List<Entity> stillObjects = new ArrayList<>();
+    public static int[][] idObjects;
+    public CreateMap crM = new CreateMap("Level1");
 
 
     public static void main(String[] args) {
@@ -44,6 +49,26 @@ public class BombermanGame extends Application {
         // Tao scene
         Scene scene = new Scene(root);
 
+        scene.setOnKeyPressed(event -> {
+            if (true)
+                switch (event.getCode()) {
+                    case UP:
+                        AnimatedEntity.move_up(bomberman);
+                        break;
+                    case DOWN:
+                        AnimatedEntity.move_down(bomberman);
+                        break;
+                    case LEFT:
+                        AnimatedEntity.move_left(bomberman);
+                        break;
+                    case RIGHT:
+                        AnimatedEntity.move_right(bomberman);
+                        break;
+//                    case SPACE:
+//                        Bomb.putBomb();
+//                        break;
+                }
+        });
         // Them scene vao stage
         stage.setScene(scene);
         stage.show();
@@ -57,29 +82,23 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        createMap();
 
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+
+        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        ballom = new Balloon(4,5,Sprite.balloom_left1.getFxImage());
         entities.add(bomberman);
+        entities.add(ballom);
     }
 
-    public void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
-                }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
-                }
-                stillObjects.add(object);
-            }
-        }
-    }
 
     public void update() {
         entities.forEach(Entity::update);
+        //AnimatedEntity.running(bomberman);
+       // entities.forEach(g -> AnimatedEntity.controlFrame(g));
+        AnimatedEntity.controlFrame(bomberman);
+        AnimatedEntity.controlFrame(ballom);
+
+        //bomberman.controlFrame();
     }
 
     public void render() {
