@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BombermanGame extends Application {
-    
+
     public static final int WIDTH = 25;
     public static final int HEIGHT = 15;
     public static int _width = 0;
@@ -25,14 +25,13 @@ public class BombermanGame extends Application {
     public static int[][] listKill;
     public static Balloon ballom;
     public static Bomb bomm;
-    private GraphicsContext gc;
-    private Canvas canvas;
-    public List<Entity> entities = new ArrayList<>();
     public static List<Entity> stillObjects = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
     public static int[][] idObjects;
+    public List<Entity> entities = new ArrayList<>();
     public CreateMap crM = new CreateMap("Level1");
-
+    private GraphicsContext gc;
+    private Canvas canvas;
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -85,9 +84,8 @@ public class BombermanGame extends Application {
         timer.start();
 
 
-
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        ballom = new Balloon(4,5,Sprite.balloom_left1.getFxImage());
+        ballom = new Balloon(4, 5, Sprite.balloom_left1.getFxImage());
         //bomm = new Bomb(2,3,Sprite.bomb_2.getFxImage());
 
         entities.add(bomberman);
@@ -110,6 +108,6 @@ public class BombermanGame extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
-        enemy.forEach(g->g.render(gc));
+        enemy.forEach(g -> g.render(gc));
     }
 }

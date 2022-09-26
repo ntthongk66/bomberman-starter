@@ -10,29 +10,34 @@ import java.util.List;
 import static uet.oop.bomberman.BombermanGame.*;
 
 public class Bomb extends Entity {
+    public static int powerBomb = 1;
+    // 0: nothing
+    // 1: had put bomb
+    // 2: explosion
+    public static int bombNumber = 20; // number of bomb in each level
+    public static boolean isEdge = false;
+    public static boolean isMiddle = false;
     private static long timeBomb;
     private static long timeTmp;
     private static int ActiveSwap = 1;
     private static int ExplosionSwap = 1;
+
+
     private static int powerUp;
     private static int powerDown;
     private static int powerLeft;
     private static int powerRight;
     private static Entity boom;
+
+
+    // contain 4 direction of a bomb after exploded
     private static Entity top;
     private static Entity left;
     private static Entity right;
-    public static int powerBomb = 1;
     private static Entity bottom;
-    private static List<Entity> LeftRight = new ArrayList<>();
-    private static List<Entity> TopBottom = new ArrayList<>();
+    private static final List<Entity> LeftRight = new ArrayList<>();
+    private static final List<Entity> TopBottom = new ArrayList<>();
     private static int status = 0;
-    // 0: nothing
-    // 1: had put bomb
-    // 2: explosion
-    public static int bombNumber = 20;
-    public static boolean isEdge = false;
-    public static boolean isMiddle = false;
 
     public Bomb(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
@@ -272,56 +277,54 @@ public class Bomb extends Entity {
                     Explosion_frame();
                     timeTmp += 100;
                 }
-            }
-        else
-        {
-            status = 0;
-            idObjects[boom.getX() / 32][boom.getY() / 32] = 0;
-            //listKill[bomb.getX() / 32][bomb.getY() / 32] = 0;
-            boom.setImg(Sprite.transparent.getFxImage());
-            if (Enviroment.can_bomb_down(boom, powerDown)) {
-                bottom.setImg(Sprite.transparent.getFxImage());
-                idObjects[bottom.getX() / 32][bottom.getY() / 32] = 0;
-                listKill[bottom.getX() / 32][bottom.getY() / 32] = 0;
-            }
-            if (Enviroment.can_bomb_up(boom, powerUp)) {
-                top.setImg(Sprite.transparent.getFxImage());
-                idObjects[top.getX() / 32][top.getY() / 32] = 0;
-                listKill[top.getX() / 32][top.getY() / 32] = 0;
-            }
-            if (Enviroment.can_bomb_left(boom, powerLeft)) {
-                left.setImg(Sprite.transparent.getFxImage());
-                idObjects[left.getX() / 32][left.getY() / 32] = 0;
-                listKill[left.getX() / 32][left.getY() / 32] = 0;
-            }
-            if (Enviroment.can_bomb_right(boom, powerRight)) {
-                right.setImg(Sprite.transparent.getFxImage());
-                idObjects[right.getX() / 32][right.getY() / 32] = 0;
-                listKill[right.getX() / 32][right.getY() / 32] = 0;
-            }
-            if (isMiddle) {
-                for (Entity e : LeftRight) {
-                    listKill[e.getX() / 32][e.getY() / 32] = 0;
-                    idObjects[e.getX() / 32][e.getY() / 32] = 0;
+            } else {
+                status = 0;
+                idObjects[boom.getX() / 32][boom.getY() / 32] = 0;
+                //listKill[bomb.getX() / 32][bomb.getY() / 32] = 0;
+                boom.setImg(Sprite.transparent.getFxImage());
+                if (Enviroment.can_bomb_down(boom, powerDown)) {
+                    bottom.setImg(Sprite.transparent.getFxImage());
+                    idObjects[bottom.getX() / 32][bottom.getY() / 32] = 0;
+                    listKill[bottom.getX() / 32][bottom.getY() / 32] = 0;
                 }
-                for (Entity e : TopBottom) {
-                    listKill[e.getX() / 32][e.getY() / 32] = 0;
-                    idObjects[e.getX() / 32][e.getY() / 32] = 0;
+                if (Enviroment.can_bomb_up(boom, powerUp)) {
+                    top.setImg(Sprite.transparent.getFxImage());
+                    idObjects[top.getX() / 32][top.getY() / 32] = 0;
+                    listKill[top.getX() / 32][top.getY() / 32] = 0;
                 }
-            }
-            stillObjects.removeAll(LeftRight);
-            stillObjects.removeAll(TopBottom);
-            LeftRight.clear();
-            TopBottom.clear();
+                if (Enviroment.can_bomb_left(boom, powerLeft)) {
+                    left.setImg(Sprite.transparent.getFxImage());
+                    idObjects[left.getX() / 32][left.getY() / 32] = 0;
+                    listKill[left.getX() / 32][left.getY() / 32] = 0;
+                }
+                if (Enviroment.can_bomb_right(boom, powerRight)) {
+                    right.setImg(Sprite.transparent.getFxImage());
+                    idObjects[right.getX() / 32][right.getY() / 32] = 0;
+                    listKill[right.getX() / 32][right.getY() / 32] = 0;
+                }
+                if (isMiddle) {
+                    for (Entity e : LeftRight) {
+                        listKill[e.getX() / 32][e.getY() / 32] = 0;
+                        idObjects[e.getX() / 32][e.getY() / 32] = 0;
+                    }
+                    for (Entity e : TopBottom) {
+                        listKill[e.getX() / 32][e.getY() / 32] = 0;
+                        idObjects[e.getX() / 32][e.getY() / 32] = 0;
+                    }
+                }
+                stillObjects.removeAll(LeftRight);
+                stillObjects.removeAll(TopBottom);
+                LeftRight.clear();
+                TopBottom.clear();
 
-            isEdge = false;
-            isMiddle = false;
-            powerDown = 0;
-            powerUp = 0;
-            powerLeft = 0;
-            powerRight = 0;
-        }
-        }
+                isEdge = false;
+                isMiddle = false;
+                powerDown = 0;
+                powerUp = 0;
+                powerLeft = 0;
+                powerRight = 0;
+            }
+    }
 
 
     @Override

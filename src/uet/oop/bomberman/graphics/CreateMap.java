@@ -22,6 +22,7 @@ public class CreateMap {
             String line = sc.nextLine();
 
             StringTokenizer tokens = new StringTokenizer(line);
+            // the first line in each levelN.txt are level's Name, the map's height, the map's width
             _level = Integer.parseInt(tokens.nextToken());
             _height = Integer.parseInt(tokens.nextToken());
             _width = Integer.parseInt(tokens.nextToken());
@@ -56,7 +57,7 @@ public class CreateMap {
                             default:
                                 entity = new Grass(j, i, Sprite.grass.getFxImage());
                         }
-                        idObjects[j][i] = s;
+                        idObjects[j][i] = s; // Store map
 //                        block.add(entity);
                         stillObjects.add(entity);
 
