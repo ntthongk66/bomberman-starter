@@ -69,6 +69,11 @@ public class Bomber extends AnimatedEntity{
     public int getSwap(){
         return this.swap;
     }
+
+    /*
+    *
+    *
+    * */
     public void Dead_frame(){
         if(deadFrame % 16 == 0){
             if(deadSwap == 1){
