@@ -17,8 +17,52 @@ public class Bomber extends AnimatedEntity{
 
 
     public Bomber(int x, int y, Image img) {
+
         super( x, y, img);
+        imgDown.add(Sprite.player_down.getFxImage());
+        imgDown.add(Sprite.player_down_1.getFxImage());
+        imgDown.add(Sprite.player_down.getFxImage());
+        imgDown.add(Sprite.player_down_2.getFxImage());
+
+        imgUp.add(Sprite.player_up.getFxImage());
+        imgUp.add(Sprite.player_up_1.getFxImage());
+        imgUp.add(Sprite.player_up.getFxImage());
+        imgUp.add(Sprite.player_up_2.getFxImage());
+
+        imgLeft.add(Sprite.player_left.getFxImage());
+        imgLeft.add(Sprite.player_left_1.getFxImage());
+        imgLeft.add(Sprite.player_left.getFxImage());
+        imgLeft.add(Sprite.player_left_2.getFxImage());
+
+        imgRight.add(Sprite.player_right.getFxImage());
+        imgRight.add(Sprite.player_right_1.getFxImage());
+        imgRight.add(Sprite.player_right.getFxImage());
+        imgRight.add(Sprite.player_right_2.getFxImage());
+
+        isRunning = false;
+        MAXNUMSTEP = 4;
+        speed = 8;
+        MAXDELAYTIME = 4;
     }
+
+//    @Override
+//    public Image chooseImg(String direction) {
+//        if(!isRunning)
+//            return imgRight.get(0);
+//        int chooseFrame = count  ;
+//        switch (direction){
+//            case "UP":
+//                return imgUp.get(chooseFrame);
+//            case "DOWN":
+//                return imgDown.get(chooseFrame);
+//            case "LEFT":
+//                return imgLeft.get(chooseFrame);
+//            case "RIGHT":
+//                return imgRight.get(chooseFrame);
+//        }
+//        return  null;
+//    }
+
     public  void setSwap(int s){
         this.swap = s;
     }
@@ -52,14 +96,6 @@ public class Bomber extends AnimatedEntity{
         for(Entity animal : enemy){
             int bx = animal.getX();
             int by = animal.getY();
-//            if(ax == bx){
-//                if((by <= ay && by + 32 >= ay) ||(by <= ay + 32 && by + 32 >= ay+32))
-//                    this.life = false;
-//            }
-//            else if(ay == by){
-//                if((bx <= ax && bx + 32 >= ax) ||(bx <= ax + 32 && bx + 32 >= ax+32))
-//                    this.life = false;
-//            }
 
             if (ax == bx && by - 32 <= ay && by + 32 >= ay
                     || ay == by && bx - 32 <= ax && bx + 32 >= ax) {
@@ -72,7 +108,7 @@ public class Bomber extends AnimatedEntity{
     @Override
     public void update() {
         checkBoms();
-        checkEnemy();
+        //checkEnemy();
         deadFrame++;
         if(!this.life){
             Dead_frame();

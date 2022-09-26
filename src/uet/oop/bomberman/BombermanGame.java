@@ -55,16 +55,16 @@ public class BombermanGame extends Application {
             if (true)
                 switch (event.getCode()) {
                     case UP:
-                        AnimatedEntity.move_up(bomberman);
+                        AnimatedEntity.move(bomberman,"UP");
                         break;
                     case DOWN:
-                        AnimatedEntity.move_down(bomberman);
+                        AnimatedEntity.move(bomberman,"DOWN");
                         break;
                     case LEFT:
-                        AnimatedEntity.move_left(bomberman);
+                        AnimatedEntity.move(bomberman,"LEFT");
                         break;
                     case RIGHT:
-                        AnimatedEntity.move_right(bomberman);
+                        AnimatedEntity.move(bomberman,"RIGHT");
                         break;
                     case SPACE:
                         Bomb.putBomb();

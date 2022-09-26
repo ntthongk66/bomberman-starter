@@ -28,7 +28,14 @@ public class CreateMap {
 
             while (sc.hasNextLine()) {
                idObjects = new int[_width][_height];
+
                listKill = new int[_width][_height];
+                for(int i = 0; i< _width; i++){
+                    for (int j = 0; j< _height; j++){
+                        idObjects[i][j] = 0;
+                        listKill[i][j] = 0;
+                    }
+                }
                 for (int i = 0; i < _height; ++i) {
                     String lineTile = sc.nextLine();
                     StringTokenizer tokenTile = new StringTokenizer(lineTile);

@@ -6,8 +6,35 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.util.Random;
 
 public class Balloon extends AnimatedEntity{
+
+
     public Balloon(int xUnit, int yUnit, Image img) {
+
         super(xUnit, yUnit, img);
+        imgDown.add(Sprite.balloom_right1.getFxImage());
+        imgDown.add(Sprite.balloom_right2.getFxImage());
+        imgDown.add(Sprite.balloom_right3.getFxImage());
+        imgDown.add(Sprite.balloom_right2.getFxImage());
+
+        imgUp.add(Sprite.balloom_left1.getFxImage());
+        imgUp.add(Sprite.balloom_left2.getFxImage());
+        imgUp.add(Sprite.balloom_left3.getFxImage());
+        imgUp.add(Sprite.balloom_left2.getFxImage());
+
+        imgLeft.add(Sprite.balloom_right1.getFxImage());
+        imgLeft.add(Sprite.balloom_right2.getFxImage());
+        imgLeft.add(Sprite.balloom_right3.getFxImage());
+        imgLeft.add(Sprite.balloom_right2.getFxImage());
+
+        imgRight.add(Sprite.balloom_left1.getFxImage());
+        imgRight.add(Sprite.balloom_left3.getFxImage());
+        imgRight.add(Sprite.balloom_left2.getFxImage());
+        imgRight.add(Sprite.balloom_left1.getFxImage());
+
+        isRunning = false;
+        MAXNUMSTEP = 8;
+        MAXDELAYTIME = 8;
+        speed = 4;
     }
 
 //    @Override
@@ -93,16 +120,16 @@ public class Balloon extends AnimatedEntity{
             int dir = random.nextInt(4);
             switch (dir) {
                 case 1:
-                    AnimatedEntity.move_down(this);
+                    AnimatedEntity.move(this,"DOWN");
                     break;
                 case 2:
-                    AnimatedEntity.move_up(this);
+                    AnimatedEntity.move(this,"UP");
                     break;
                 case 3:
-                    AnimatedEntity.move_left(this);
+                    AnimatedEntity.move(this,"LEFT");
                     break;
                 case 4:
-                    AnimatedEntity.move_right(this);
+                    AnimatedEntity.move(this,"RIGHT");
                     break;
             }
         }
