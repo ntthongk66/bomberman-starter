@@ -45,23 +45,6 @@ public class Bomber extends AnimatedEntity{
         MAXDELAYTIME = 4;
     }
 
-//    @Override
-//    public Image chooseImg(String direction) {
-//        if(!isRunning)
-//            return imgRight.get(0);
-//        int chooseFrame = count  ;
-//        switch (direction){
-//            case "UP":
-//                return imgUp.get(chooseFrame);
-//            case "DOWN":
-//                return imgDown.get(chooseFrame);
-//            case "LEFT":
-//                return imgLeft.get(chooseFrame);
-//            case "RIGHT":
-//                return imgRight.get(chooseFrame);
-//        }
-//        return  null;
-//    }
 
     public  void setSwap(int s){
         this.swap = s;
