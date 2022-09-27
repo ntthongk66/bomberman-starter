@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Enviroment;
 import uet.oop.bomberman.graphics.Sprite;
 
+import static uet.oop.bomberman.entities.Items.speedBoost.speedBoost;
+
 public abstract class AnimatedEntity extends Entity {
     protected  int swap;
     protected int deadFrame = 0;
@@ -16,6 +18,7 @@ public abstract class AnimatedEntity extends Entity {
     public void setLife(boolean life){
         this.life = life;
     }
+
 
     protected  String direction = "";
     public void setFps(int s){
@@ -61,6 +64,7 @@ public abstract class AnimatedEntity extends Entity {
     }
     public static void setDirectionMove(String s, int speed,AnimatedEntity entity){
         switch (s){
+
             case "UP" :
                up_frame(entity);
                entity.setY(entity.getY()-speed);
@@ -81,7 +85,8 @@ public abstract class AnimatedEntity extends Entity {
     }
     public static void running(AnimatedEntity entity){
         if(entity.getNumStep() > 0){
-            setDirectionMove(entity.getDirection(),8 ,entity);
+            setDirectionMove(entity.getDirection(),Bomber.speedNormal *
+                    speedBoost ,entity);
             entity.setNumStep(entity.getNumStep()-1);
         }
     };
@@ -89,7 +94,7 @@ public abstract class AnimatedEntity extends Entity {
         if(entity.getX()%32 == 0 && entity.getY() % 32 == 0 && Enviroment.can_move_down(entity)){
             if(entity instanceof Bomber){
                 entity.setDirection("DOWN");
-                entity.setNumStep(4);
+                entity.setNumStep(8/speedBoost);
                 running(entity);
             }
             else
@@ -106,7 +111,7 @@ public abstract class AnimatedEntity extends Entity {
         if(entity.getX()%32 == 0 && entity.getY() % 32 == 0 && Enviroment.can_move_up(entity)){
             if(entity instanceof Bomber){
                 entity.setDirection("UP");
-                entity.setNumStep(4);
+                entity.setNumStep(8/speedBoost);
                 running(entity);
             }
             else
@@ -121,7 +126,7 @@ public abstract class AnimatedEntity extends Entity {
         if(entity.getX()%32 == 0 && entity.getY() % 32 == 0 && Enviroment.can_move_left(entity)){
             if(entity instanceof Bomber){
                 entity.setDirection("LEFT");
-                entity.setNumStep(4);
+                entity.setNumStep(8/speedBoost);
                 running(entity);
             }
             else
@@ -136,7 +141,7 @@ public abstract class AnimatedEntity extends Entity {
         if(entity.getX()%32 == 0 && entity.getY() % 32 == 0 && Enviroment.can_move_right(entity)){
             if(entity instanceof Bomber){
                 entity.setDirection("RIGHT");
-                entity.setNumStep(4);
+                entity.setNumStep(8/speedBoost);
                 running(entity);
             }
             else
@@ -151,7 +156,7 @@ public abstract class AnimatedEntity extends Entity {
 
     public static void down_frame(AnimatedEntity entity){
         if(entity instanceof Bomber){
-            if(entity.getY() % 8 == 0){
+            if(entity.getY() % (4*speedBoost) == 0){
                 if (entity.getSwap() == 1) {
                     entity.setImg(Sprite.player_down.getFxImage());
                     entity.setSwap(2);
@@ -187,7 +192,7 @@ public abstract class AnimatedEntity extends Entity {
     };
     public static void up_frame(AnimatedEntity entity){
         if(entity instanceof Bomber){
-            if (entity.getY() % 8 == 0) {
+            if (entity.getY() % (4*speedBoost) == 0) {
                 if (entity.getSwap() == 1) {
                     entity.setImg(Sprite.player_up.getFxImage());
                     entity.setSwap(2);
@@ -225,7 +230,7 @@ public abstract class AnimatedEntity extends Entity {
     public static void right_frame(AnimatedEntity entity){
 
         if(entity instanceof Bomber){
-            if (entity.getY() % 8 == 0) {
+            if (entity.getY() % (4*speedBoost) == 0) {
                 if (entity.getSwap() == 1) {
                     entity.setImg(Sprite.player_right.getFxImage());
                     entity.setSwap(2);
@@ -261,7 +266,7 @@ public abstract class AnimatedEntity extends Entity {
     };
     public static void left_frame(AnimatedEntity entity){
         if(entity instanceof Bomber){
-            if (entity.getY() % 8 == 0) {
+            if (entity.getY() % (4*speedBoost) == 0) {
                 if (entity.getSwap() == 1) {
                     entity.setImg(Sprite.player_left.getFxImage());
                     entity.setSwap(2);

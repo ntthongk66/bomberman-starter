@@ -14,6 +14,7 @@ import static uet.oop.bomberman.BombermanGame.listKill;
 public class Bomber extends AnimatedEntity{
     private int swap;
     private int deadSwap = 1;
+    public static int speedNormal = 4;
 
 
     public Bomber(int x, int y, Image img) {

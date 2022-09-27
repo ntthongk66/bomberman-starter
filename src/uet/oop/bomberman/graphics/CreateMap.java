@@ -1,6 +1,8 @@
 package uet.oop.bomberman.graphics;
 
 import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.Items.FlameBoost;
+import uet.oop.bomberman.entities.Items.speedBoost;
 import uet.oop.bomberman.map.Brick;
 import uet.oop.bomberman.map.Grass;
 import uet.oop.bomberman.map.Portal;
@@ -47,12 +49,12 @@ public class CreateMap {
                             case 3:
                                 entity = new Brick(j, i, Sprite.brick.getFxImage());
                                 break;
-//                            case 6:
-//                                entity = new SpeedItem(j, i, Sprite.brick.getFxImage());
-//                                break;
-//                            case 7:
-//                                entity = new FlameItem(j, i, Sprite.brick.getFxImage());
-                                //break;
+                            case 6:
+                                entity = new speedBoost(j, i, Sprite.brick.getFxImage());
+                                break;
+                            case 7:
+                                entity = new FlameBoost(j, i, Sprite.brick.getFxImage());
+                                break;
                             default:
                                 entity = new Grass(j, i, Sprite.grass.getFxImage());
                         }
