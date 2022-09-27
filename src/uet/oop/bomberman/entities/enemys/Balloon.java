@@ -1,13 +1,16 @@
-package uet.oop.bomberman.entities;
+package uet.oop.bomberman.entities.enemys;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.AnimatedEntity;
+import uet.oop.bomberman.entities.enemys.AI.AI;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.entities.enemys.AI.stupidAI;
 
 import java.util.Random;
 
-public class Balloon extends AnimatedEntity{
+public class Balloon extends AnimatedEntity {
 
-
+    private int dir ;
     public Balloon(int xUnit, int yUnit, Image img) {
 
         super(xUnit, yUnit, img);
@@ -36,21 +39,23 @@ public class Balloon extends AnimatedEntity{
         MAXDELAYTIME = 8;
         speed = 4;
     }
+    private   AI ai = new stupidAI();
     public void RandomMove(){
         if (this.x % 16 == 0 && this.y % 16 == 0) {
-            Random random = new Random();
-            int dir = random.nextInt(4);
+//            Random random = new Random();
+//            int dir = random.nextInt(4);
+            dir = ai.calculateDirection();
             switch (dir) {
-                case 1:
+                case 0:
                     AnimatedEntity.move(this, "DOWN");
                     break;
-                case 2:
+                case 1:
                     AnimatedEntity.move(this, "UP");
                     break;
-                case 3:
+                case 2:
                     AnimatedEntity.move(this, "LEFT");
                     break;
-                case 4:
+                case 3:
                     AnimatedEntity.move(this, "RIGHT");
                     break;
             }

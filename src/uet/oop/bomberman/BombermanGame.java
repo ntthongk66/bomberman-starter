@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.enemys.*;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -24,6 +25,7 @@ public class BombermanGame extends Application {
     public static Bomber bomberman;
     public static int[][] listKill;
     public static Balloon ballom;
+    public  static  Kondoria kondoria;
     public static Bomb bomm;
     public static List<Entity> stillObjects = new ArrayList<>();
     public static List<Entity> enemy = new ArrayList<>();
@@ -86,10 +88,12 @@ public class BombermanGame extends Application {
 
         bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
         ballom = new Balloon(4, 5, Sprite.balloom_left1.getFxImage());
+        kondoria = new Kondoria(6,1,Sprite.kondoria_left1.getFxImage());
         //bomm = new Bomb(2,3,Sprite.bomb_2.getFxImage());
 
         entities.add(bomberman);
         enemy.add(ballom);
+        enemy.add(kondoria);
     }
 
 
@@ -99,6 +103,7 @@ public class BombermanGame extends Application {
 
         AnimatedEntity.controlFrame(bomberman);
         AnimatedEntity.controlFrame(ballom);
+        AnimatedEntity.controlFrame(kondoria);
         stillObjects.forEach(Entity::update);
 
         //bomberman.controlFrame();
