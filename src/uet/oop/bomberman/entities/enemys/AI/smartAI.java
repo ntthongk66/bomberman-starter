@@ -1,14 +1,15 @@
 package uet.oop.bomberman.entities.enemys.AI;
 
+import uet.oop.bomberman.entities.AnimatedEntity;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
 
 public class smartAI extends AI {
 
     Bomber bomber;
-    Entity enemy;
+    AnimatedEntity enemy;
 
-    public smartAI(Bomber bomber, Entity enemy) {
+    public smartAI(Bomber bomber, AnimatedEntity enemy) {
         this.bomber = bomber;
          this.enemy = enemy;
     }
@@ -35,6 +36,8 @@ public class smartAI extends AI {
             else
                 return calculateRowDirection();
         }
+
+
 
     }
 
