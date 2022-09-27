@@ -25,25 +25,29 @@ public class Enviroment {
     }
 
     // 3, 6, 7 ,8 still unknown so skip it for now 
-    public static boolean can_bomb_down(Entity entity, int power) {
-        int id = idObjects[entity.getX() / 32][entity.getY() / 32 + 1 + power];
-        return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
-    }
+//    public static boolean can_bomb_down(Entity entity, int power) {
+//        int id = idObjects[entity.getX() / 32][entity.getY() / 32 + 1 + power];
+//        return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
+//    }
+//
+//    public static boolean can_bomb_up(Entity entity, int power) {
+//        int id = idObjects[entity.getX() / 32][entity.getY() / 32 - 1 - power];
+//        return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
+//    }
 
-    public static boolean can_bomb_up(Entity entity, int power) {
-        int id = idObjects[entity.getX() / 32][entity.getY() / 32 - 1 - power];
-        return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
-    }
-
-    public static boolean can_bomb_left(Entity entity, int power) {
-
-        int id = idObjects[entity.getX() / 32 - 1 - power][entity.getY() / 32];
-        return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
-    }
-
-    public static boolean can_bomb_right(Entity entity, int power) {
-
-        int id = idObjects[entity.getX() / 32 + 1 + power][entity.getY() / 32];
+//    public static boolean can_bomb_left(Entity entity, int power) {
+//
+//        int id = idObjects[entity.getX() / 32 - 1 - power][entity.getY() / 32];
+//        return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
+//    }
+//
+//    public static boolean can_bomb_right(Entity entity, int power) {
+//
+//        int id = idObjects[entity.getX() / 32 + 1 + power][entity.getY() / 32];
+//        return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
+//    }
+    public static boolean can_bomb(Entity entity,int x, int y){
+        int id = idObjects[entity.getX() / 32 + x][entity.getY() / 32 + y];
         return id == grassID || id == 3 || id == 6 || id == 7 || id == 8;
     }
 

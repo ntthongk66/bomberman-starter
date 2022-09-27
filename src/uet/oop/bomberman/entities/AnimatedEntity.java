@@ -104,7 +104,6 @@ public abstract class AnimatedEntity extends Entity {
         if(entity.getNumStep() > 0){
 
             setDirectionMove(entity.getDirection(), entity.speed,entity);
-
             entity.setNumStep(entity.getNumStep()-1);
         }
     };

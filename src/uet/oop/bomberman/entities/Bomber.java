@@ -40,8 +40,9 @@ public class Bomber extends AnimatedEntity{
         imgRight.add(Sprite.player_right_2.getFxImage());
 
         isRunning = false;
-        MAXNUMSTEP = 4;
-        speed = 8;
+
+        speed = 16;
+        MAXNUMSTEP = 4 / (speed / 8);
         MAXDELAYTIME = 4;
     }
 
