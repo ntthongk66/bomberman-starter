@@ -1,6 +1,7 @@
-package uet.oop.bomberman.entities;
+package uet.oop.bomberman.entities.enemys;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.AnimatedEntity;
 
 import java.util.Random;
 
@@ -88,22 +89,24 @@ public class Balloon extends AnimatedEntity {
 //    }
     public void update() {
         if (this.x % 16 == 0 && this.y % 16 == 0) {
-            Random random = new Random();
-            int dir = random.nextInt(4);
-            switch (dir) {
-                case 1:
-                    AnimatedEntity.move_down(this);
-                    break;
-                case 2:
-                    AnimatedEntity.move_up(this);
-                    break;
-                case 3:
-                    AnimatedEntity.move_left(this);
-                    break;
-                case 4:
-                    AnimatedEntity.move_right(this);
-                    break;
-            }
+
+            AnimatedEntity.move_right(this);
+//            Random random = new Random();
+//            int dir = random.nextInt(4);
+//            switch (dir) {
+//                case 0:
+//                    AnimatedEntity.move_down(this);
+//                    break;
+//                case 1:
+//                    AnimatedEntity.move_up(this);
+//                    break;
+//                case 2:
+//                    AnimatedEntity.move_left(this);
+//                    break;
+//                case 3:
+//                    AnimatedEntity.move_right(this);
+//                    break;
+//            }
         }
     }
 

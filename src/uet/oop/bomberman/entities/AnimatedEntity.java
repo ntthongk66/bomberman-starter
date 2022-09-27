@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.enemys.Balloon;
 import uet.oop.bomberman.graphics.Enviroment;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -16,10 +17,31 @@ public abstract class AnimatedEntity extends Entity {
         super(xUnit, yUnit, img);
     }
 
+    public static void setDirectionMove(String s, int pixelsPerFrame, AnimatedEntity entity) {
+        switch (s) {
+            case "UP":
+                up_frame(entity);
+                entity.setY(entity.getY() - pixelsPerFrame);
+                break;
+            case "DOWN":
+                down_frame(entity);
+                entity.setY(entity.getY() + pixelsPerFrame);
+                break;
+            case "LEFT":
+                left_frame(entity);
+                entity.setX(entity.getX() - pixelsPerFrame);
+                break;
+            case "RIGHT":
+                right_frame(entity);
+                entity.setX(entity.getX() + pixelsPerFrame);
+                break;
+        }
+    }
+
     public static void controlFrame(AnimatedEntity entity) {
         entity.setFps(entity.getFps() + 1);
         if (entity instanceof Bomber) {
-            if (entity.getFps() == 4) {
+            if (entity.getFps() == 4) { // each 4ms, running more 8 pixels because 8*4 = 32
                 running(entity);
                 entity.setFps(0);
             }
@@ -32,31 +54,18 @@ public abstract class AnimatedEntity extends Entity {
 
     }
 
-    public static void setDirectionMove(String s, int speed, AnimatedEntity entity) {
-        switch (s) {
-            case "UP":
-                up_frame(entity);
-                entity.setY(entity.getY() - speed);
-                break;
-            case "DOWN":
-                down_frame(entity);
-                entity.setY(entity.getY() + speed);
-                break;
-            case "LEFT":
-                left_frame(entity);
-                entity.setX(entity.getX() - speed);
-                break;
-            case "RIGHT":
-                right_frame(entity);
-                entity.setX(entity.getX() + speed);
-                break;
-        }
-    }
-
+    // bug in here, the pixelsPerFrame cause balloon can go through the wall
     public static void running(AnimatedEntity entity) {
         if (entity.getNumStep() > 0) {
-            setDirectionMove(entity.getDirection(), 8, entity);
-            entity.setNumStep(entity.getNumStep() - 1);
+            if (entity instanceof Bomber) {
+                setDirectionMove(entity.getDirection(), 8, entity);
+                entity.setNumStep(entity.getNumStep() - 1);
+            }
+            // we can use else if for later
+            else {
+                setDirectionMove(entity.getDirection(), 4, entity);
+                entity.setNumStep(entity.getNumStep() - 1);
+            }
         }
     }
 
@@ -195,7 +204,7 @@ public abstract class AnimatedEntity extends Entity {
     public static void right_frame(AnimatedEntity entity) {
 
         if (entity instanceof Bomber) {
-            if (entity.getY() % 8 == 0) {
+            if (entity.getY() % 4 == 0) {
                 if (entity.getSwap() == 1) {
                     entity.setImg(Sprite.player_right.getFxImage());
                     entity.setSwap(2);

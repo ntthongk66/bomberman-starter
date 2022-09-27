@@ -6,8 +6,13 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.AnimatedEntity;
+import uet.oop.bomberman.entities.Bomb;
+import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.enemys.Balloon;
 import uet.oop.bomberman.graphics.CreateMap;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -71,6 +76,12 @@ public class BombermanGame extends Application {
                 }
         });
         // Them scene vao stage
+
+        Image icon = new Image("E:\\bomberman-starter\\res\\Image\\Icon\\icon.png");
+        stage.getIcons().add(icon);
+        stage.setTitle("BomberGame_BTL_Nhom_7");
+        stage.setResizable(false);
+
         stage.setScene(scene);
         stage.show();
 
